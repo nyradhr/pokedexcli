@@ -6,7 +6,7 @@ import (
 
 func commandMap(config *config) error {
 
-	areasResp, err := config.pokeapiClient.GetLocationAreas(config.next)
+	areasResp, err := config.pokeapiClient.GetLocationAreas(config.next, config.pokeCache)
 	if err != nil {
 		return err
 	}

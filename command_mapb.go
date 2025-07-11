@@ -11,7 +11,7 @@ func commandMapB(config *config) error {
 		return errors.New("you're already on the first page")
 	}
 
-	areasResp, err := config.pokeapiClient.GetLocationAreas(config.previous)
+	areasResp, err := config.pokeapiClient.GetLocationAreas(config.previous, config.pokeCache)
 	if err != nil {
 		return err
 	}
