@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-func commandMap(config *config) error {
+func commandMap(config *config, args []string) error {
 
 	areasResp, err := config.pokeapiClient.GetLocationAreas(config.next, config.pokeCache)
 	if err != nil {
