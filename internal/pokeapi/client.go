@@ -29,21 +29,17 @@ func GetResource[T any](cache *pokecache.Cache, client *Client, url string) (T, 
 		if err != nil {
 			return resource, err
 		}
-
 		resp, err := client.httpClient.Do(req)
 		if err != nil {
 			return resource, err
 		}
 		defer resp.Body.Close()
-
 		data, err = io.ReadAll(resp.Body)
 		if err != nil {
 			return resource, err
 		}
-
 		cache.Add(url, data)
 	}
-
 	result := resource
 	err := json.Unmarshal(data, &result)
 	if err != nil {

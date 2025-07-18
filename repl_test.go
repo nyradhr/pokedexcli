@@ -44,7 +44,6 @@ func TestCleanInput(t *testing.T) {
 			expected: []string{"!!", "$%,", "75789", "(==)", "=£/"},
 		},
 	}
-
 	for _, c := range cases {
 		actual := cleanInput(c.input)
 		// Check the length of the actual slice against the expected slice
@@ -66,11 +65,9 @@ func TestCleanInput(t *testing.T) {
 func TestGetLocationAreasUsesCache(t *testing.T) {
 	cache := pokecache.NewCache(5 * time.Second)
 	client := pokeapi.NewClient(5 * time.Second)
-
-	// Prepare a mock response and cache it
 	mockNext := "http://test_url_next.123"
 	mockPrev := "http://test_url_prev.321"
-	mockResp := pokeapi.LocationAreaResponse{
+	mockResp := pokeapi.LocationAreas{
 		Count:    3,
 		Next:     &mockNext,
 		Previous: &mockPrev,
@@ -89,7 +86,6 @@ func TestGetLocationAreasUsesCache(t *testing.T) {
 		t.Fatal(err)
 	}
 	cache.Add(url, data)
-
 	// Should hit cache, not make HTTP request
 	resp, err := client.GetLocationAreas(nil, cache)
 	if err != nil {

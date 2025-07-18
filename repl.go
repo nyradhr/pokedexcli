@@ -15,14 +15,11 @@ func repl(config *config) {
 	for {
 		fmt.Print("Pokédex > ")
 		user.Scan()
-
 		input := user.Text()
 		cleanText := cleanInput(input)
-
 		if len(cleanText) == 0 {
 			continue
 		}
-
 		commandName := cleanText[0]
 		commandParameter := cleanText[1:]
 		command, exists := commands()[commandName]
@@ -78,12 +75,18 @@ func commands() map[string]cliCommand {
 			description: "Lists all Pokémon in the specified location area",
 			callback:    commandExplore,
 		},
+		"catch": {
+			name:        "catch",
+			description: "Lets the player attempt catching the specified Pokémon",
+			callback:    commandCatch,
+		},
 	}
 }
 
 type config struct {
 	pokeapiClient pokeapi.Client
 	pokeCache     *pokecache.Cache
+	pokedex       map[string]pokeapi.Pokemon
 	next          *string
 	previous      *string
 }
