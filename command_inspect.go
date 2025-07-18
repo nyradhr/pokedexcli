@@ -21,6 +21,5 @@ func commandInspect(config *config, args []string) error {
 			fmt.Println(" - ", t.Type.Name)
 		}
 	}
-
 	return nil
 }
