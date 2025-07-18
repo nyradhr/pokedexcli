@@ -13,7 +13,7 @@ func commandCatch(config *config, args []string) error {
 	}
 	fmt.Println("Throwing a Pokeball at " + pokemonName + "...")
 	base_exp := pokemonResp.BaseExperience
-	if rand.Float64() < float64(100/base_exp) {
+	if rand.Float64() < float64(100)/float64(base_exp) {
 		fmt.Println(pokemonName + " was caught!")
 		config.pokedex[pokemonName] = pokemonResp
 		fmt.Println("Added " + pokemonName + "'s data to the Pokédex.")
